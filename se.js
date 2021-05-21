@@ -19,15 +19,29 @@ function Plugin(settings) {
 	}
 
 	this.addToWorkspace = function (block_key) {
+	  $("#block_selecter br").remove();
 	  $("#block_selecter")[0].innerHTML += add(blocks.get(block_key) );
 	}
 
+	this.removeFromWorkspace = function (plugin) {
+	  $("#block_selecter br").remove();
+	  $(`[plugin="${plugin}"]`).addClass('se-disabled');
+	  
+	  
+	}
+	
+	this.returnToWorkspace = function (plugin) {
+	  $("#block_selecter br").remove();
+	  $(`[plugin="${plugin}"]`).removeClass('se-disabled').show();
+
+	  
+	}	
 	
 }
 
 /*
 Пример.
-plugins.push('pluginname');
+plugins.push(pluginname);
 var pluginname = new Plugin({id: 'pluginname'});
 blocks.set('blockname', block({
     text: 'Текст. Можно использовать %textInput% для ввода',
